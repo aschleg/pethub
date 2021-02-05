@@ -1,0 +1,6 @@
+$ cat .gitignore
+
+venv/
+.idea/
+.env
+*.ipynb
