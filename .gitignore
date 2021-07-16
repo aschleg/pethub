@@ -2,5 +2,7 @@ $ cat .gitignore
 
 venv/
 .idea/
+notebooks/
 .env
+*.csv
 *.ipynb
