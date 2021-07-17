@@ -3,6 +3,7 @@ import json
 import os
 import petpy
 import datetime
+import concurrent.futures
 import boto3
 import psycopg2
 
@@ -19,7 +20,18 @@ class PetfinderETL(object):
                                   secret=self.petfinder_secret_key)
 
     def get_organizations(self):
+        # TODO: If possible, edit getting organizations to exclude those already included in the DB
         orgs = self.pf.organizations(location='WA', country='US', results_per_page=100, pages=100)['organizations']
 
-        with open('organizations_{date}.json'.format(date=datetime.datetime.now().strftime('%Y-%m-%d')), 'w') as f:
+        # TODO: Multiprocess the loop below
+        for org in orgs:
+            organization = dict((k, org[k]) for k in ['id', 'name', 'email', 'phone', 'url', 'website',
+                                                      'mission_statement'] if k in org)
+            address = org['address']
+            hours = org['hours']
+            social_media = org['social_media']
+            photos = org['photos']
+
+        # TODO: Edit to upload to specified path in S3
+        with open('organizations_{date}.json'.format(date=datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')), 'w') as f:
             json.dump(orgs['organizations'], f)

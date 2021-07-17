@@ -3,6 +3,7 @@ $ cat .gitignore
 venv/
 .idea/
 notebooks/
+.DS_Store
 .env
 *.csv
 *.ipynb
