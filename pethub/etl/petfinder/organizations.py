@@ -56,6 +56,8 @@ def get_organizations():
     --------
     petpy
         https://github.com/aschleg/petpy
+    psycopg2
+        https://www.psycopg.org/docs/
     json_each_text, json_populate_record
         https://www.postgresql.org/docs/10/functions-json.html
 
