@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import json
 import os
+import sys
 import petpy
 from petpy import exceptions
 import datetime
@@ -134,6 +135,7 @@ def get_animals():
                         print('animal inserted: ' + str(animal_id))
         except (RuntimeError, exceptions.PetfinderError) as err:
             print(err)
+            sys.exit()
 
         s3_client.put_object(Body=json.dumps(animals),
                              Bucket='pethub-data',
