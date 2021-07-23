@@ -5,7 +5,7 @@ web.
 
 ## Current Data Sources
 
-#### [Petfinder](https://www.petfinder.com/)
+### [Petfinder](https://www.petfinder.com/)
 
 Petfinder provides an [API](https://www.petfinder.com/developers/v2/docs/) that allows users to extract listed 
 organization and animal data.
@@ -18,6 +18,6 @@ welfare organizations across North America find homes for their listed animals. 
 > They can then reference a shelter’s web page and discover what services it offers. Petfinder also includes discussion 
 > forums, a pet-care resource directory and a library of free pet-care articles to help keep pets in their homes.
 
-#### Austin Animal Center
+### Austin Animal Center
 
 Austin Animal Center is one of the largest animal welfare organizations in the United States.

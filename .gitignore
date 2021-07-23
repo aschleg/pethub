@@ -3,6 +3,9 @@ $ cat .gitignore
 venv/
 .idea/
 notebooks/
+dist/
+build/
+*.egg-info/
 .DS_Store
 .env
 *.csv
