@@ -10,3 +10,8 @@ build/
 .env
 *.csv
 *.ipynb
+__pycache__
+
+# Airflow
+airflow/airflow.cfg
+airflow/

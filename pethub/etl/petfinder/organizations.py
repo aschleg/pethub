@@ -121,7 +121,7 @@ def get_organizations():
         # backed to help ensure data consistency.
         with conn:
             with conn.cursor() as cur:
-                # Insert each transformed data object into their appopriate table using INSERT INTO ... SELECT *
+                # Insert each transformed data object into their appropriate table using INSERT INTO ... SELECT *
                 # syntax. We also try to maintain data consistency by using the table keys to find any currently
                 # inserted organizations in the tables and update the fields with the new data.
                 cur.execute('''INSERT INTO organizations.organization
@@ -152,15 +152,13 @@ def get_organizations():
                                 FROM json_each_text('{hours}')
                                 ON CONFLICT ON CONSTRAINT hours_org_id_day_of_week 
                                 DO UPDATE SET 
-                                    hours = EXCLUDED.hours;'''
-                            .format(org_id=org_id, hours=hours))
+                                    hours = EXCLUDED.hours;'''.format(org_id=org_id, hours=hours))
                 cur.execute('''INSERT INTO organizations.social_media (org_id, site, url)
                                 SELECT '{org_id}' as "org_id", * 
                                 FROM json_each_text('{social_media}') 
                                 ON CONFLICT ON CONSTRAINT social_media_org_id_site 
                                 DO UPDATE SET 
-                                    url = EXCLUDED.url;'''
-                           .format(org_id=org_id, social_media=social_media))
+                                    url = EXCLUDED.url;'''.format(org_id=org_id, social_media=social_media))
                 cur.execute('''INSERT INTO organizations.adoption
                                                 SELECT *
                                                 FROM json_populate_record(null::organizations.adoption, '{adoption}') 
@@ -173,8 +171,7 @@ def get_organizations():
                 for photo in photos:
                     cur.execute('''INSERT INTO organizations.photos (org_id, image_size, url) 
                                     SELECT '{org_id}' as "org_id", * 
-                                    FROM json_each_text('{photos}')'''
-                                .format(org_id=org_id, photos=json.dumps(photo)))
+                                    FROM json_each_text('{photos}')'''.format(org_id=org_id, photos=json.dumps(photo)))
         # Print to console that the inserts into the organizations tables was successful.
         print('organization inserted: ' + org_id)
     # Lastly, close the created connection.
