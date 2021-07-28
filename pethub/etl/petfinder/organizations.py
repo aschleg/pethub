@@ -63,7 +63,12 @@ def get_organizations():
 
     """
     # Create a connection to the Postgres database that stores the extracted Petfinder API data.
-    conn = _create_connection()
+    conn = psycopg2.connect(
+        host=os.environ.get("DB_HOST"),
+        database=os.environ.get("DB_NAME"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD")
+    )
     # With the authenticated Petfinder API connection established, call the `organizations` function in `petpy`
     # to get approximately 10,000 animal welfare organizations across the United States. The Petfinder API only allows
     # 1,000 calls per day, so this call will likely use most, if not all, of the day's allotted calls. The maximum
@@ -176,25 +181,6 @@ def get_organizations():
         print('organization inserted: ' + org_id)
     # Lastly, close the created connection.
     conn.close()
-
-
-def _create_connection():
-    r"""
-    Creates a connection to the specified database.
-
-    Returns
-    -------
-    conn : psycopg2 connection class
-
-    """
-    conn = psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD")
-    )
-
-    return conn
 
 
 if __name__ == '__main__':

@@ -54,7 +54,12 @@ def get_animals():
 
     """
     # Create a connection to the Postgres database using psycopg2's connection class.
-    conn = _create_connection()
+    conn = psycopg2.connect(
+        host=os.environ.get("DB_HOST"),
+        database=os.environ.get("DB_NAME"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD")
+    )
     # Get the organization IDs stored in the `organization` table within the `organizations` schema and save the
     # IDs to a list.
     with conn:
@@ -187,25 +192,6 @@ def get_animals():
             sys.exit()
     # Close the created connection
     conn.close()
-
-
-def _create_connection():
-    r"""
-    Creates a connection to the specified database.
-
-    Returns
-    -------
-    conn : psycopg2 connection class
-
-    """
-    conn = psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD")
-    )
-
-    return conn
 
 
 if __name__ == '__main__':
