@@ -21,7 +21,7 @@ import boto3
 import psycopg2
 
 
-load_dotenv('../../../.env')
+load_dotenv('../../.env')
 """Load the needed environment variables. These could also be system level variables if you are running the script 
 on your local machine."""
 
@@ -190,6 +190,9 @@ def get_animals():
         except (RuntimeError, exceptions.PetfinderError) as err:
             print(err)
             sys.exit()
+        except KeyError:
+            raise exceptions.PetfinderError('Rate Limit Reached')
+
     # Close the created connection
     conn.close()
 

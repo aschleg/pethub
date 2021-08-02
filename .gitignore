@@ -1,6 +1,6 @@
 $ cat .gitignore
 
-venv/
+pethub_venv/
 .idea/
 notebooks/
 dist/
@@ -13,5 +13,6 @@ build/
 __pycache__
 
 # Airflow
-airflow/airflow.cfg
 airflow/
+airflow/airflow.cfg
+/airflow/logs/
