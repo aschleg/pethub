@@ -13,8 +13,8 @@ load_dotenv('../../.env')
 on your local machine."""
 
 s3_session = boto3.Session(
-    aws_access_key_id=os.environ.get('PETHUB_AWS_SECRET_ID'),
-    aws_secret_access_key=os.environ.get('PETHUB_AWS_SECRET_ACCESS_KEY')
+    aws_access_key_id=os.environ.get('AWS_SECRET_ID'),
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY')
 )
 s3_client = s3_session.client("s3")
 

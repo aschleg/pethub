@@ -1,5 +1,3 @@
-$ cat .gitignore
-
 pethub_venv/
 .idea/
 notebooks/

@@ -25,21 +25,21 @@ load_dotenv('../../.env')
 """Load the needed environment variables. These could also be system level variables if you are running the script 
 on your local machine."""
 
-pf = petpy.Petfinder(key=os.environ.get('PETFINDER_PETHUB_KEY'),
-                     secret=os.environ.get('PETFINDER_PETHUB_SECRET_KEY'))
+pf = petpy.Petfinder(key=os.environ.get('PETFINDER_KEY'),
+                     secret=os.environ.get('PETFINDER_SECRET_KEY'))
 """Initialized Petfinder class with authenticated connection. 
 
-The environment variables PETFINDER_PETHUB_KEY and PETFINDER_PETHUB_SECRET_KEY are the access and secret keys obtained 
+The environment variables PETFINDER_KEY and PETFINDER_SECRET_KEY are the access and secret keys obtained 
 from the Petfinder API when registering for an API key.
 """
 
 s3_session = boto3.Session(
-    aws_access_key_id=os.environ.get('PETHUB_AWS_SECRET_ID'),
-    aws_secret_access_key=os.environ.get('PETHUB_AWS_SECRET_ACCESS_KEY')
+    aws_access_key_id=os.environ.get('AWS_SECRET_ID'),
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY')
 )
 """S3 session object for connecting and interacting with Amazon Web Services programmatically.
 
-The environment variables PETHUB_AWS_SECRET_ID and PETHUB_AWS_SECRET_ACCESS_KEY are obtained from the Amazon Web 
+The environment variables AWS_SECRET_ID and AWS_SECRET_ACCESS_KEY are obtained from the Amazon Web 
 Services IAM console."""
 s3_client = s3_session.client("s3")
 """S3 client object which is used for performing the actual programmatic operations with AWS such as uploading files."""
@@ -84,7 +84,7 @@ def get_animals():
             s3_client.put_object(Body=json.dumps(animals_at_orgs),
                                  Bucket='pethub-data',
                                  Key='petfinder/animals/{org_id}_animals_{dt}.json'
-                                 .format(org_id=org, dt=datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')))
+                                 .format(org_id=org, dt=datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')))
 
             # For each animal listed at the current organization, we extract and transform the returned data from the
             # API before inserting it into the database tables.

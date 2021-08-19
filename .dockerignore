@@ -1,0 +1,17 @@
+pethub_venv
+.idea
+notebooks
+dist/
+build
+*.egg-info
+.DS_Store
+.env
+*.csv
+*.ipynb
+__pycache__
+
+# Airflow
+airflow
+
+#
+pethub/aac
