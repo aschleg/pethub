@@ -3,7 +3,10 @@ from pethub.petfinder import animals, organizations, images
 
 
 def main():
-    animals.get_animals()
+    try:
+        animals.get_animals()
+    except:
+        pass
     images.download_images(table='animals')
 
 
