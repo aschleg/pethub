@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  animals:
+    image: pethub:latest
+    env_file:
+      - .env
+    command:
+      python pethub/petfinder/animals.py
+  images:
+    image: pethub:latest
+    env_file:
+      - .env
+    depends_on:
+      - "animals"
+    command:
+      python pethub/petfinder/images.py

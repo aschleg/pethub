@@ -10,8 +10,7 @@ build
 *.ipynb
 __pycache__
 
-# Airflow
-airflow
+airflow/
 
 #
 pethub/aac

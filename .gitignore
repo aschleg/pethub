@@ -10,7 +10,6 @@ build/
 *.ipynb
 __pycache__
 
-# Airflow
-airflow/
-airflow/airflow.cfg
-/airflow/logs/
+airflow/logs
+airflow/plugins
+airflow/*.yaml
